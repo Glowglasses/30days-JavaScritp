@@ -8,4 +8,4 @@ transitionend 事件在 CSS 完成过渡后触发。<br>
 
 ### HTMLCollection
 通过getElementsByClassName获取到的值的类型不是数组而是一个类数组<br>
-需要通过`for of | Array.from().forEach()` 来遍历
+需要通过`for of | Array.from().forEach() | forEach()` 来遍历
