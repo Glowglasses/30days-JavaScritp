@@ -18,9 +18,9 @@ fetch一些不完美
 
 ## replace
 replace方法对于替换字符是个高效的方法
-`str.replace(regexp|substr, newSubStr|function)`
-第一个参数可以是字符串或者正则
-第二个参数是替换的字符和一个函数
+`str.replace(regexp|substr, newSubStr|function)`<br>
+第一个参数可以是字符串或者正则<br>
+第二个参数是替换的字符和一个函数<br>
 当是字符串时，还可以插入一些特殊字符 [mdn](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace#%E4%BD%BF%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0)
 ##### 交换字符串中的两个单词
 ```js
