@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="诗句 诗名 诗人">
+    <ul class="suggestions">
+      <li>输入诗句，找一首诗</li>
+      <li></li>
+    </ul>
+  </form>
+  <script>
+    const input = document.querySelector('.search')
+    const suggestions = document.querySelector('.suggestions')
+    const endpoint = 'https://gist.githubusercontent.com/soyaine/81399bb2b24ca1bb5313e1985533c640/raw/bdf7df2cbcf70706c4a5e51a7dfb8c933ed78878/TangPoetry.json';
+    let fetchData = []
+    fetch(endpoint).then(blob => blob.text().then(data => fetchData = JSON.parse(data)?.map(item => ({ detail: item.detail_text, titleAndAuthor: `${item.title} - ${item.detail_author}` }))))
+
+    input.addEventListener('input', e => {
+      const searchValue = e.target.value
+      const filterData = fetchData.filter(item => item.detail.includes(searchValue) || item.titleAndAuthor.includes(searchValue))
+      let liList = ''
+      filterData.forEach(item => {
+        let detail = item.detail
+        if (searchValue) {
+          detail = detail.replaceAll(searchValue, `<span class='hl'>${searchValue}</span>`)
+        }
+        liList += `<li><span>${detail}<span class='population'>${item.titleAndAuthor}</span></span></li>`
+      })
+      if (liList) {
+        suggestions.innerHTML = liList
+      } else {
+        suggestions.innerHTML = ``
+      }
+    })
+  </script>
+</body>
+
+</html>
